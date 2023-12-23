@@ -41,18 +41,18 @@ class _WeatherViewState extends State<WeatherView> {
       body:
       Consumer<WeatherApi>(
           builder: (context, provider, _) {
-            return provider.data.isEmpty ? const Center(
-              child: CircularProgressIndicator(color: Colors.white,),)
-            :
+            return
+                  provider.data.isEmpty ? const Center(
+              child: CircularProgressIndicator(color: Colors.white,),) :
             Center(
             child: Column(
             children: [
             const SizedBox(
             height: 10,
             ),
-            const Text(
-            'Today, May 7th, 2021',
-            style: TextStyle(
+             Text(
+            provider.data["location"]['localtime'],
+            style: const TextStyle(
             fontSize: 14,
             color: Colors.white,
             ),
@@ -60,9 +60,9 @@ class _WeatherViewState extends State<WeatherView> {
             const SizedBox(
             height: 5,
             ),
-            const Text(
-            'Barcelona',
-            style: TextStyle(
+             Text(
+                  provider.data["location"]["name"],
+            style: const TextStyle(
             fontSize: 40,
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -71,9 +71,9 @@ class _WeatherViewState extends State<WeatherView> {
             const SizedBox(
             height: 3,
             ),
-            const Text(
-            'Spain',
-            style: TextStyle(
+             Text(
+                  provider.data["location"]["country"],
+            style: const TextStyle(
             fontSize: 20,
             color: Colors.white,
             ),
@@ -92,12 +92,13 @@ class _WeatherViewState extends State<WeatherView> {
             children: [
             Image.asset(
             'assets/images/image4.png',
+                  // provider.data["current"]["condition"]["icon"],
             width: 100,
             height: 100,
             ),
-            const Text(
-            '10°C',
-            style: TextStyle(
+             Text(
+            '${provider.data["current"]["temp_c"]}C',
+            style: const TextStyle(
             color: Colors.black,
             fontSize: 80,
             fontWeight: FontWeight.w300),
@@ -108,12 +109,12 @@ class _WeatherViewState extends State<WeatherView> {
             const SizedBox(
             height: 10,
             ),
-            const Row(
+             Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
             Column(
             children: [
-            Text(
+            const Text(
             'Wind status',
             style: TextStyle(
             color: Colors.white,
@@ -122,17 +123,17 @@ class _WeatherViewState extends State<WeatherView> {
             ),
             ),
             Text(
-            '7 mph',
-            style: TextStyle(
+            '${provider.data["current"]["wind_mph"]} mph',
+            style: const TextStyle(
             color: Colors.white,
             fontSize: 20,
             ),
             ),
             ],
             ),
-            Column(
+             Column(
             children: [
-            Text(
+            const Text(
             'Visibility',
             style: TextStyle(
             color: Colors.white,
@@ -141,8 +142,8 @@ class _WeatherViewState extends State<WeatherView> {
             ),
             ),
             Text(
-            '6.4 miles',
-            style: TextStyle(
+            '${provider.data["current"]["vis_miles"]} miles',
+            style: const TextStyle(
             color: Colors.white,
             fontSize: 20,
             ),
@@ -154,12 +155,12 @@ class _WeatherViewState extends State<WeatherView> {
             const SizedBox(
             height: 10,
             ),
-            const Row(
+             Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
             Column(
             children: [
-            Text(
+            const Text(
             'Humidity',
             style: TextStyle(
             color: Colors.white,
@@ -168,8 +169,8 @@ class _WeatherViewState extends State<WeatherView> {
             ),
             ),
             Text(
-            '85%',
-            style: TextStyle(
+            '${provider.data["current"]["humidity"]}%',
+            style: const TextStyle(
             color: Colors.white,
             fontSize: 20,
             ),
@@ -178,7 +179,7 @@ class _WeatherViewState extends State<WeatherView> {
             ),
             Column(
             children: [
-            Text(
+            const Text(
             'Air pressure',
             style: TextStyle(
             color: Colors.white,
@@ -187,8 +188,8 @@ class _WeatherViewState extends State<WeatherView> {
             ),
             ),
             Text(
-            '998 mb',
-            style: TextStyle(
+            '${provider.data["current"]["pressure_mb"]} mb',
+            style: const TextStyle(
             color: Colors.white,
             fontSize: 20,
             ),
